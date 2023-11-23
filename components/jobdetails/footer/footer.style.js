@@ -31,11 +31,11 @@ const styles = StyleSheet.create({
   applyBtn: {
     flex: 1,
     backgroundColor: "#FE7654",
-    height: "100%",
     justifyContent: "center",
     alignItems: "center",
     marginLeft: SIZES.medium,
     borderRadius: SIZES.medium,
+    height: 55
   },
   applyBtnText: {
     fontSize: SIZES.medium,
