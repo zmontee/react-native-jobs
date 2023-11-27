@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import {
   View,
   Text,
@@ -15,7 +15,11 @@ import useFetch from '../../../hook/useFetch';
 
 const Popularjobs = () => {
   const router = useRouter();
-  const { data, isLoading, error } = useFetch('search', { query: 'React Developer', num_pages: 1 });
+  const {
+    data,
+    isLoading,
+    error,
+  } = useFetch('search', { query: 'React Developer', num_pages: 1 });
 
   return (
     <View style={styles.container}>
@@ -35,6 +39,7 @@ const Popularjobs = () => {
             renderItem={({ item }) => (
               <PopularJobCard
                 item={item}
+                handleCardPress={() => router.push(`/job-details/${item?.job_id}`)}
               />
             )}
             keyExtractior={item => item?.job_id || item}

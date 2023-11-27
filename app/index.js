@@ -7,9 +7,22 @@ import {
   ScreenHeaderBtn,
   Welcome,
 } from '../components';
+import { useCallback, useState } from 'react';
 
 const Home = () => {
   const router = useRouter();
+  const [searchTerm, setSearchTerm] = useState('');
+
+  const handleSearchChange = useCallback((text) => {
+    setSearchTerm(text.target.value);
+  }, [setSearchTerm]);
+
+  const searchAction = useCallback(() => {
+    if (searchTerm) {
+      router.push(`/search/${searchTerm}`);
+    }
+  }, [searchTerm]);
+
   return (
     <SafeAreaView style={{ flex: 1, backgroundColor: COLORS.lightWhite }}>
       <Stack.Screen options={{
@@ -24,7 +37,9 @@ const Home = () => {
 
       <ScrollView showsVerticalScrollIndicator={false}>
         <View style={{ flex: 1, padding: SIZES.medium }}>
-          <Welcome />
+          <Welcome searchTerm={searchTerm}
+                   handleSearchChange={handleSearchChange}
+                   searchAction={searchAction} />
           <Popularjobs />
           <Nearbyjobs />
         </View>
